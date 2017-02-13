@@ -1,0 +1,66 @@
+section(ui-view="")
+  .page-title
+    h2 Products
+    input.form-control(type='text', placeholder='Search product', ng-model='searchProduct')
+    .page-inner
+      span(ng-hide="cartData.length==0")
+        table.table.table-responsove.table-bordered
+          thead
+            h3 Shopping Cart
+            tr
+              th Name
+              th Quantity
+              th Price
+              th Category
+              th Action
+          tbody
+            tr(ng-repeat="item in cartData")
+              td {{item.nazwa}}
+              td {{item.ilosc}}
+                button(class="btn btn-xs btn-success quantitybtn" ng-click="moreItem(item.id)")
+                  i(class="fa fa-plus")
+                button(class="btn btn-xs btn-warning" ng-click="lessItem(item.id)" ng-disabled="item.ilosc<=1")
+                  i(class="fa fa-minus")
+              td {{item.ilosc * item.cena | currency : 'PLN ' : 2}}
+              td {{item.Kategorie}}
+              td
+                button(class="btn btn-xs btn-danger" ng-click="removeFromCard($index)") Delete item
+        h3(style="font-weight: 700") Total price: {{totalPrice()}} PLN
+          button(class="btn btn-ls btn-success pull-right" ng-click="setCart()") Save Cart
+        br
+      table.table.table-responsive.table-striped.table-bordered(ng-hide="data.length == 0")
+        thead
+          tr
+            th(ng-click="sortType = 'id'; sortReverse = !sortReverse") Id
+              span.fa.fa-caret-down(ng-show="sortType == 'id' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'id' && sortReverse")
+            th(ng-click="sortType = 'nazwa'; sortReverse = !sortReverse") Name
+              span.fa.fa-caret-down(ng-show="sortType == 'nazwa' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'nazwa' && sortReverse")
+            th(ng-click="sortType = 'ilosc'; sortReverse = !sortReverse") Quantity
+              span.fa.fa-caret-down(ng-show="sortType == 'ilosc' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'ilosc' && sortReverse")
+            th(ng-click="sortType = 'cena'; sortReverse = !sortReverse") Price
+              span.fa.fa-caret-down(ng-show="sortType == 'cena' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'cena' && sortReverse")
+            th(ng-click="sortType = 'Kategorie'; sortReverse = !sortReverse") Category
+              span.fa.fa-caret-down(ng-show="sortType == 'Kategorie' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'Kategorie' && sortReverse")
+            th Action
+        tbody
+          tr(ng-repeat="item in products | orderBy:sortType:sortReverse | filter: searchProduct:item as data" ng-hide="item.ilosc==0")
+            h4(ng-show="data.length == 0") There are no products matching the search conditions.
+            td
+              | {{item.id}}
+            td
+              | {{item.nazwa}}
+            td
+              | {{item.ilosc}}
+            td
+              | {{item.cena | currency : 'PLN ' : 2}}
+            td
+              | {{item.nazwa_kategoria}}
+            td
+              button(class="btn btn-xs btn-success" ng-click="addToCard(item.id, item.nazwa, item.cena, item.nazwa_kategoria)") Add to Cart
+
+

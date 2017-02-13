@@ -1,0 +1,26 @@
+.form-background
+  .form-panel
+    form.register(name='registrationForm', ng-submit='signUp(user.login, user.password)', novalidate='')
+      p.form-title SIGN UP
+      .input-group
+        input#login.form-control(type='text', name='login', placeholder='Login', ng-model='user.login', required='', ng-pattern='/^[a-żA-Ż0-9]*$/', ng-minlength='6', ng-maxlength='20')
+      div(ng-messages='registrationForm.login.$error', ng-show='registrationForm.$submitted || registrationForm.login.$touched')
+        span.fieldError(ng-message='required') Login field is required!
+        span.fieldError(ng-message='pattern') The field can only contain letters and numbers!
+        span.fieldError(ng-message='maxlength') Login can not be longer than 20 characters!
+        span.fieldError(ng-message='minlength') Login can not be shorter than 6 characters!
+      .input-group
+        input#password.form-control(type='password', name='password', placeholder='Password', ng-model='user.password', required='', ng-pattern='/^[a-żA-Ż0-9]*$/', ng-minlength='8', ng-maxlength='20')
+      div(ng-messages='registrationForm.password.$error', ng-show='registrationForm.$submitted || registrationForm.password.$touched')
+        span.fieldError(ng-message='required') Password field is required !
+        span.fieldError(ng-message='pattern') The field can only contain letters and numbers !
+        span.fieldError(ng-message='maxlength') Password can not be longer than 20 characters!
+        span.fieldError(ng-message='minlength') Password can not be shorter than 8 characters!
+      .input-group
+        input#passwordRepeat.form-control(type='password', name='passwordRepeat', placeholder='Password Repeat', ng-model='user.passwordRepeat', required='', pw-check='password')
+      div(ng-messages='registrationForm.passwordRepeat.$error', ng-show='registrationForm.$submitted || registrationForm.passwordRepeat.$touched')
+        span.fieldError(ng-message='required') Repeat Password field is required!
+        span.fieldError(ng-message='pwmatch') Passwords must be the same!
+      br
+      input.signup-button(class='btn btn-primary',type='submit', ng-disabled='!registrationForm.$valid', value='Register')
+      button.signup-button(class='btn btn-danger',ui-sref='login')  Back

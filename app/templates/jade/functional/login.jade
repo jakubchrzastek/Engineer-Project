@@ -1,0 +1,21 @@
+//login.html
+.form-background
+  .form-panel
+    form.signin(name='loginForm', ng-submit='signIn(user.login, user.password)', novalidate='')
+      p.form-title WELCOME
+      input#login.form-control(type='text', name='login', placeholder='LOGIN', ng-model='user.login', required='', ng-pattern='/^[a-zA-Z0-9]*$/', ng-minlength='6', ng-maxlength='20')
+      div(ng-messages='loginForm.login.$error', ng-show='loginForm.$submitted || loginForm.login.$touched')
+        div.fieldError(ng-message='required') Login field is required!
+        div.fieldError(ng-message='pattern') The field can only contain letters and numbers!
+        div.fieldError(ng-message='maxlength') Login can not be longer than 20 characters!
+        div.fieldError(ng-message='minlength') Login can not be shorter than 6 characters!
+      input#password.form-control(type='password', name='password', ng-model='user.password', required='', ng-pattern='/^[a-zA-Z0-9]*$/', ng-minlength='8', ng-maxlength='20', placeholder='PASWORD')
+      div(ng-messages='loginForm.password.$error', ng-show='loginForm.$submitted || loginForm.password.$touched')
+        div.fieldError(ng-message='required') Password field is required !
+        div.fieldError(ng-message='pattern') The field can only contain letters and numbers !
+        div.fieldError(ng-message='maxlength') Password can not be longer than 20 characters!
+        div.fieldError(ng-message='minlength') Password can not be shorter than 8 characters!
+      input.signin-button(class='btn btn-primary', type='submit', ng-disabled='!loginForm.$valid', value='Submit')
+      a.text-center(ui-sref='register')
+        p  You need account? Sign up!
+      h3(ng-bind="error", ng-if="error")

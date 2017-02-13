@@ -1,0 +1,14 @@
+section()
+  header.header
+    span.header-logo
+    span.hamburger(ng-click="showSidebar = !showSidebar")
+      span
+
+  nav.sidebar(ng-class="{'is-visible': showSidebar}")
+    li.sidebar-label Menu
+    menu(content='adminMenu')
+
+  .main-content
+    .content-wrapper
+      div(ui-view="")
+

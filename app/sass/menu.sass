@@ -1,0 +1,280 @@
+.content-wrapper
+    padding: 80px 20px 20px
+    background: #e7eaeb
+    height: 100%
+    width: 100%
+    display: block
+    min-height: 100%
+@media only screen and (min-width: 768px)
+  .main-content
+    position: absolute
+    right: 0
+    top: 55px
+    left: 100px
+    .content-wrapper
+      padding: 20px
+@media only screen and (min-width: 1170px)
+  .main-content
+    top: 55px
+    right: 0px
+    height: 91%
+    left: 200px
+.header
+  position: absolute
+  z-index: 2
+  top: 0
+  left: 0
+  height: 55px
+  width: 100%
+  background: #3e454c
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4)
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  &::after
+    clear: both
+    content: ""
+    display: table
+
+@media only screen and (min-width: 768px)
+  .header
+    position: fixed
+    height: 55px
+
+.header-logo
+  float: left
+  display: block
+  margin: 11px 0 0 36px
+  img
+    width: 18px
+    display: block
+
+@media only screen and (min-width: 768px)
+  .header-logo
+    margin: 10px 0 0 36px
+
+.hamburger
+  float: right
+  position: relative
+  display: block
+  width: 34px
+  height: 44px
+  margin-right: 10px
+  margin-top: 5px
+  overflow: hidden
+  cursor: pointer
+  span
+    /* hamburger icon in CSS  */
+    position: absolute
+    display: inline-block
+    height: 3px
+    width: 44px
+    background: #ffffff
+    &::before, &::after
+      /* hamburger icon in CSS  */
+      position: absolute
+      display: inline-block
+      height: 3px
+      width: 34px
+      background: #ffffff
+      transition: ease 0.3s
+    position: absolute
+    top: 50%
+    right: 5px
+    margin-top: -2px
+    transition: ease-out 0.3s
+    &::before, &::after
+      /* other 2 lines  */
+      content: ''
+      right: 0
+    &::before
+      /* menu icon top line  */
+      top: -6px
+    &::after
+      /* menu icon bottom line */
+      top: 6px
+  &.hamburger-visible span
+    background: none
+    &::before
+      transform: translateX(2px) translateY(7px) rotate(45deg)
+    &::after
+      transform: translateX(2px) translateY(-5px) rotate(-45deg)
+@media only screen and (min-width: 768px)
+  .hamburger
+    display: none
+
+#block
+  font-weight: 800
+  .header-person
+    z-index: 3
+    width: 170px
+    height: 55px
+    position: fixed
+    top: 0px
+    right: 0px
+    background: darken(#2c3136, 4%)
+    display: none
+    p
+      color: #ffffff
+      font-size: 14px
+      padding: 16px 20px 10px 10px
+    i
+      position: absolute
+      cursor: pointer
+      right: 10px
+      top: 20px
+      margin-right: 15px
+      color: #ffffff
+    .dropdown
+      visibility: visible
+      width: 100%
+      background: lighten(#2c3136, 100%)
+      top: 5px
+      right: 0px
+      opacity: 0
+      transition: 0.3s ease
+      padding: 0
+      box-shadow: 3px 3px 20px rgba(0,0,0,.4)
+      li
+        text-decoration: none
+        list-style-type: none
+        border-bottom: 1px solid #373d44
+        &:last-child
+          border-bottom: none
+          i
+            top: 60px
+        &:hover
+          p
+            background-color: darken(#2c3136, 4%)
+            color: #ffffff
+            cursor: pointer
+            transition: background-color 0.2s
+          i
+            color: #ffffff
+        p
+          margin: 0
+          padding: 15px 0px 10px 50px
+          color: darken(#2c3136, 4%)
+        i
+          font-size: 20px
+          color: darken(#2c3136, 4%)
+          left: 15px
+          top: 13px
+  &:hover .dropdown
+    visibility: visible
+    top: 0px
+    opacity: 1
+  @media only screen and (min-width: 768px)
+   .header-person
+      display: block
+/* --------------------------------
+ *
+ *Sidebar
+ *
+ *--------------------------------*/
+.sidebar
+  position: absolute
+  z-index: 1
+  left: 0
+  top: 0
+  width: 100%
+  padding: 0
+  background: #2c3136
+  visibility: hidden
+  max-height: 0
+  opacity: 0
+  height: 0
+  &.is-visible
+    min-height: 100%
+    opacity: 1
+    visibility: visible
+  &.sidebar-visible
+    opacity: 1
+    overflow: visible
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
+  > ul
+    padding: 1.5em 0
+    .active
+      background-color: #16a085
+      a
+        text-decoration: none
+        color: #ffffff
+      &:hover
+        a
+          background-color: #16a085
+    &:last-of-type
+      padding-bottom: 0
+    > li
+      &:hover
+        a
+          color: #ffffff
+          text-decoration: none
+          background-color: darken(#2c3136, 4%)
+          transition: background-color 0.2s
+          cursor: pointer
+      &:active
+        a
+          background-color: #16a085
+      &:visited
+        a
+        background-color: #16a085
+      > i
+          margin-right: 20px
+  .sidebar-label, a
+    display: block
+    padding: 1em 2em 0.4em 1em
+  .sidebar-label
+    text-transform: uppercase
+    font-weight: bold
+    color: #646a6f
+    font-size: 1.1rem
+    letter-spacing: .1em
+  a
+    position: relative
+    color: #aaaaaa
+    font-size: 1.4rem
+    text-align: center
+  > ul > li
+    > a
+      border-bottom: 1px solid #373d44
+@media only screen and (min-width: 768px)
+  .sidebar
+    position: fixed
+    float: left
+    top: 0
+    width: 100px
+    visibility: visible
+    max-height: 100%
+    height: 100vh
+    opacity: 1
+    > ul
+      padding: 1.8em 0
+      > li
+        i
+          margin: 5px 0px 0px 10px
+        p
+          margin: 5px 0px 5px 10px
+          font-weight: 800
+          font-size: 12px
+@media only screen and (min-width: 1170px)
+  .sidebar
+    padding-top: 40px
+    width: 200px
+    > ul
+      padding: 0.6em 0
+      list-style-type: none
+      > li
+        > a
+          padding-top: 7px
+          text-align: center
+        p
+          text-align: left
+          font-size: 13px
+        i
+          font-size: 15px
+          margin: 6px 15px
+          float: left
+          &:after
+            clear: both
+    .sidebar-label
+      display: block
+      padding: 3em 18px 0 30px

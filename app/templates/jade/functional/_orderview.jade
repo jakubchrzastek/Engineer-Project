@@ -1,0 +1,39 @@
+.page-title
+    button.btn.btn-md.btn-info.pull-right(ng-click="previousState()") Back
+    br
+    h2 Order Details
+.page-inner
+    .container-fluid
+        b.pull-right {{orderDetail.detail[0].data | date : 'longDate' }}
+        br
+        .col.md-12
+            p.orderNumber Order number: FF-{{orderDetail.detail[0].id}}-{{orderDetail.detail[0].data | date : 'yyyy' }}
+        .col-md-6
+            h2 Purchaser:
+            p {{orderDetail.detail[0].imie}} {{orderDetail.detail[0].nazwisko}}
+            p Telefon: {{orderDetail.detail[0].telefon}}
+            p {{orderDetail.detail[0].miejscowosc}}
+        .col-md-6
+            h2 Seller:
+            p Jakub Chrząstek
+            p Telefon: 535072224
+            p Wroclaw
+            br
+        .col-md-12
+            h3 Order products:
+            table.table.table-responsove
+                thead
+                    tr.active
+                        th Name
+                        th Quantity
+                        th Price
+                        th Category
+                tbody
+                    tr(ng-repeat="item in orderDetail.detail")
+                        td {{item.nazwa}}
+                        td {{item.ilosc}}
+                        td {{item.ilosc * item.cena | currency : 'PLN ' : 2}}
+                        th {{item.nazwa_kategoria}}
+        br
+        h3.pull-right Total price: {{sum | currency : 'PLN ' : 2 }}
+        br

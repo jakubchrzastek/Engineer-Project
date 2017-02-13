@@ -1,0 +1,22 @@
+.page-inner
+    span(ng-show="cart")
+        table.table.table-responsove.table-bordered
+            thead
+            h3 Shopping Cart
+                tr
+                    th Name
+                    th Category
+                    th Quantity
+                    th Price
+            tbody
+                tr(ng-repeat="elem in cart")
+                    td {{elem.nazwa}}
+                    td {{elem.Kategorie}}
+                    td {{elem.ilosc}}
+                    td {{elem.cena * elem.ilosc | currency : 'PLN ' : 2}}
+        h3(style="font-weight: 700") Total cost: {{sum | currency : 'PLN ' : 2}}
+        button(class="btn btn-ls btn-info pull-right" ng-click="onSave()") Order products
+        br
+        br
+    h2(ng-show="!cart") You have no products in your Shopping Cart.
+

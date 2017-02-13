@@ -1,0 +1,24 @@
+.row
+	.block.col-lg-3.col-sm-6.col-sm-6
+		.box
+			i(class="fa fa-users")
+			h2 {{customers}}
+			p Customers
+	.block.col-lg-3.col-sm-6.col-sm-6
+		.box
+			i(class="fa fa-gift")
+			h2 {{products}}
+			p Products
+	.block.col-lg-3.col-sm-6.col-sm-12
+		.box
+			i(class="fa fa-truck")
+			h2 {{orders}}
+			p Orders
+	.block.col-lg-3.col-sm-6.col-sm-12
+		.box
+			i(class="fa fa-money")
+			h2 {{gain | currency : '' : 2}}
+			p Gain
+	.diagram.col-md-6.col-sm-6.col-lg-6
+		h2(clas="text-justify") Category of products
+		svg(class="text-center")

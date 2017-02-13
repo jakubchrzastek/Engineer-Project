@@ -1,0 +1,30 @@
+{
+  "name": "engineerproject",
+  "description": "Engineer Project for PWR",
+  "main": "app.js",
+  "authors": [
+    "Jakub Chrząstek"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/dependencies",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "angular-messages": "^1.5.8",
+    "sweetalert": "^1.1.3",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3"
+  },
+  "dependencies": {
+    "angular-md5": "^0.1.10",
+    "ngCart": "ngcart#^1.0.0"
+  }
+}

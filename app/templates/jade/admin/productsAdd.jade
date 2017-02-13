@@ -1,0 +1,23 @@
+.page-title
+    h2 Add product
+.page-inner
+    form(ng-submit="addNewProduct()" novalidate name="ProductForm").form
+        .form-group
+            label Id
+            input(name="id" type="text" ng-disabled="true" class="form-control" ng-model="newProduct.id")
+        .form-group
+            label Name
+            input(name="name" type="text"  class="form-control" ng-model="newProduct.nazwa")
+        .form-group
+            label Quantity
+            input(name="quantity" type="number"  min="0" required="" class="form-control" ng-model="newProduct.ilosc")
+        .form-group
+            label Price
+            input(name="price" type="number"  min="0" class="form-control" ng-model="newProduct.cena")
+        .form-group
+            label Category
+            br
+            select(ng-model="newProduct.Kategorie" class="form-control"
+            ng-options="item.id as item.nazwa_kategoria for item in category")
+        button.btn.btn-md.btn-info(ng-click="previousState()") Back
+        button.btn.btn-md.btn-success(type="submit" ng-disabled="!ProductForm.$dirty") Add

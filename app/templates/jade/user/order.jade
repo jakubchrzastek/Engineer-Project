@@ -1,0 +1,28 @@
+section(ui-view="")
+    .page-title
+        h2 Your orders
+        input.form-control(type='text', placeholder='Search product', ng-model='searchOrder')
+    .page-inner
+        table.table.table-responsove.table-bordered(ng-hide="data.length == 0")
+            thead
+                tr
+                    th(ng-click="sortType = 'id'; sortReverse = !sortReverse") Order Number
+                        span.fa.fa-caret-down(ng-show="sortType == 'id' && !sortReverse")
+                        span.fa.fa-caret-up(ng-show="sortType == 'id' && sortReverse")
+                    th(ng-click="sortType = 'data'; sortReverse = !sortReverse") Data
+                        span.fa.fa-caret-down(ng-show="sortType == 'data' && !sortReverse")
+                        span.fa.fa-caret-up(ng-show="sortType == 'data' && sortReverse")
+                    th(ng-click="sortType = 'nazwa'; sortReverse = !sortReverse") Status
+                        span.fa.fa-caret-down(ng-show="sortType == 'nazwa' && !sortReverse")
+                        span.fa.fa-caret-up(ng-show="sortType == 'nazwa' && sortReverse")
+                    th Action
+            tbody
+                tr(ng-repeat="item in order | orderBy:sortType:sortReverse  | filter : searchOrder : item as data")
+                    h4(ng-show="data.length == 0") There are no orders matching the search conditions.
+                    td FF-{{item.id}}-{{item.data | date : 'yyyy'}}
+                    td {{item.data| date : 'longDate' }}
+                    td
+                        button.btn.btn-xs.btn-warning {{item.nazwa}}
+                    td
+                        a(ui-sref="user.order.detail({ id: item.id })")
+                            button.btn.btn-xs.btn-info View More

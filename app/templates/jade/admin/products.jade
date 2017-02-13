@@ -1,0 +1,50 @@
+section(ui-view="")
+  .page-title
+    h2 Products
+    a(ui-sref="admin.products.add")
+      button.btn.btn-lg.btn-success Add product
+    input.form-control(type='text', placeholder='Search product', ng-model='searchProduct')
+    .page-inner
+      table.table.table-responsive.table-striped.table-bordered(ng-hide="data.length == 0")
+        thead
+          tr
+            th(ng-click="sortType = 'id'; sortReverse = !sortReverse") Id
+              span.fa.fa-caret-down(ng-show="sortType == 'id' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'id' && sortReverse")
+            th(ng-click="sortType = 'nazwa'; sortReverse = !sortReverse") Name
+              span.fa.fa-caret-down(ng-show="sortType == 'nazwa' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'nazwa' && sortReverse")
+            th(ng-click="sortType = 'ilosc'; sortReverse = !sortReverse") Quantity
+              span.fa.fa-caret-down(ng-show="sortType == 'ilosc' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'ilosc' && sortReverse")
+            th(ng-click="sortType = 'cena'; sortReverse = !sortReverse") Price
+              span.fa.fa-caret-down(ng-show="sortType == 'cena' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'cena' && sortReverse")
+            th(ng-click="sortType = 'Kategorie'; sortReverse = !sortReverse") Category
+              span.fa.fa-caret-down(ng-show="sortType == 'Kategorie' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'Kategorie' && sortReverse")
+            th(ng-click="sortType = 'ilosc'; sortReverse = !sortReverse") Status
+              span.fa.fa-caret-down(ng-show="sortType == 'ilosc' && !sortReverse")
+              span.fa.fa-caret-up(ng-show="sortType == 'ilosc' && sortReverse")
+            th Action
+        tbody
+          tr(ng-repeat="item in products | orderBy:sortType:sortReverse | filter: searchProduct:item as data")
+            h4(ng-show="data.length == 0") There are no products matching the search conditions.
+            td
+              | {{item.id}}
+            td
+              | {{item.nazwa}}
+            td
+              | {{item.ilosc}}
+            td
+              | {{item.cena | currency : 'PLN ' : 2}}
+            td
+              | {{item.nazwa_kategoria}}
+            td
+              button(ng-bind="(!item.ilosc) ? 'Brak towaru' : 'Towar dostępny'" class="btn btn-xs btn-{{ (item.ilosc) ? 'success' : 'danger' }} ")
+            td
+              a(ui-sref="admin.products.edit({ id: item.id })")
+                button.btn.btn-xs.btn-info EDIT
+              button.btn.btn-xs.btn-danger(ng-click="deleteProduct(item)") DELETE
+
+
